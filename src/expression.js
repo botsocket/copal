@@ -108,7 +108,7 @@ module.exports = internals.Expression = class {
 
             const constant = this.settings.constants[current];
             if (constant !== undefined) {
-                Assert(constant === null || ['boolean', 'number', 'string'].includes(typeof constant), current, 'must be a boolean, number, string or null');
+                Assert(constant === null || ['boolean', 'number', 'string'].includes(typeof constant), `${current} must be a boolean, number, string or null`);
 
                 parts.push({ type: 'constant', value: constant });
                 current = '';
@@ -215,7 +215,7 @@ module.exports = internals.Expression = class {
                     continue;
                 }
 
-                Assert(internals.operators.includes(part.value), 'Expression contains invalid operator', part.value);
+                Assert(internals.operators.includes(part.value), `Expression contains invalid operator ${part.value}`);
                 Assert(operator, 'Expression contains an operator in an invalid position');
             }
             else {
@@ -252,7 +252,7 @@ module.exports = internals.Expression = class {
     fn(name, raw) {
         const fn = this.settings.functions[name];
 
-        Assert(typeof fn === 'function', name, 'must be a function');
+        Assert(typeof fn === 'function', `${name} must be a function`);
 
         let args = [];
         let current = '';
