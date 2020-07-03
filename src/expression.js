@@ -36,7 +36,7 @@ module.exports = internals.Expression = class {
 
             const last = parts[parts.length - 1];
 
-            if (!last &&
+            if (!literal &&
                 !current &&
                 !lastParen) {
 
@@ -117,10 +117,8 @@ module.exports = internals.Expression = class {
 
             // References
 
-            if (current) {
-                parts.push({ type: 'reference', value: current });
-                current = '';
-            }
+            parts.push({ type: 'reference', value: current });
+            current = '';
         };
 
         for (const char of expr) {

@@ -117,6 +117,11 @@ describe('parse()', () => {
         expect(template.resolve()).toBe('This is x');
     });
 
+    it('should handle empty strings', () => {
+        const template = Template.parse('This is {""}');
+        expect(template.resolve()).toBe('This is ');
+    });
+
     it('should handle sub expression', () => {
         const template = Template.parse('This is {(x + 3) / 3}');
         expect(template.resolve({ x: 1 })).toBe(`This is ${4 / 3}`);
