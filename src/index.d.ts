@@ -49,7 +49,7 @@ declare namespace internals {
         source: string;
 
         /**
-         * Resolves run-time values and interpolates them into the current template where:
+         * Evaluates expressions and resolves the current template where:
          *
          * @param context - The context to lookup.
          *
