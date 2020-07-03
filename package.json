@@ -1,6 +1,6 @@
 {
     "name": "@botbind/template",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "description": "String format and interpolation",
     "main": "src/index.js",
     "types": "src/index.d.ts",
