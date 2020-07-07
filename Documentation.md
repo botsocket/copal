@@ -79,12 +79,12 @@ To override the provided functions or constants, use the `functions` or `constan
 const template = Template.parse('This is {PI}', { constants: { PI: 3.14 } });
 template.resolve(); // This is 3.14
 
-const template2 = Template.parse('This is {random()}', { 
-    functions: { 
+const template2 = Template.parse('This is {random()}', {
+    functions: {
         random() {
             return 12345;
         },
-    }, 
+    },
 });
 
 template2.resolve(); // This is 12345
@@ -95,11 +95,11 @@ Expressions can only operate on `null`, strings, booleans and numbers. If a refe
 To escape an expression, use `\\` before the `{` brace.
 
 ```js
-const template = Template.parse('{if(x == "someValue", 1, 2)}'); 
+const template = Template.parse('{if(x == "someValue", 1, 2)}');
 template.resolve({ x: 'someValue' }); // 1
 template.resolve({ x: 'somOtherValue' }); // 2
 
-const template2 = Template.parse('Escaped path {x\\.y.y}'); 
+const template2 = Template.parse('Escaped path {x\\.y.y}');
 template2.resolve({ 'x.y': { y: 1 } }); // Escaped path 1
 
 const template3 = Template.parse('Escaped \\{a}');
@@ -108,7 +108,7 @@ template3.resolve({ a: 1 }); // Escaped {a}
 const template4 = Template.parse('Escaped \\{{a}}');
 template4.resolve({ a: 1 }); // Escaped {1}
 
-const template5 = Template.parse('Escaped {a\\}}'); 
+const template5 = Template.parse('Escaped {a\\}}');
 template5.resolve({ 'a}': 1 }); // Escaped 1
 ```
 
