@@ -87,7 +87,7 @@ module.exports = internals.Template = class {
         for (const part of parts) {
             const end = part.indexOf('}');
 
-            if (end === -1) { // Ignore mismatching brackets
+            if (end === -1) {                                                       // Ignore mismatching brackets
                 processed.push(`{${internals.decode(part)}`);
                 continue;
             }

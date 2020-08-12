@@ -69,7 +69,7 @@ module.exports = internals.Expression = class {
             // Literals
 
             if (literal) {
-                if (literal === ']') { // Ambiguous reference
+                if (literal === ']') {                                              // Ambiguous reference
                     parts.push({ type: 'reference', value: current });
                     current = '';
                     return;
@@ -87,7 +87,7 @@ module.exports = internals.Expression = class {
             if (internals.operatorCharacters.includes(current)) {
                 if (last &&
                     last.type === 'operator' &&
-                    internals.operators.includes(last.value + current)) { // 2 character operators
+                    internals.operators.includes(last.value + current)) {           // 2 character operators
 
                     last.value += current;
                     current = '';
@@ -229,6 +229,7 @@ module.exports = internals.Expression = class {
         // Process parts
 
         this.parts = parts.map((part) => {
+
             // Prefix operators
 
             if (part.type === 'operator') {
