@@ -8,6 +8,7 @@ Template.parse('', {
     wrap: '"',
 
     reference: (path) => {
+
         const newPath = Number(path);
         return (context: number[]) => context[newPath];
     },

@@ -18,6 +18,7 @@ const internals = {
 
 module.exports = internals.Expression = class {
     constructor(expr, settings) {
+
         this.settings = settings;
 
         this.resolved = null;
@@ -26,12 +27,14 @@ module.exports = internals.Expression = class {
     }
 
     parse(expr) {
+
         const parts = [];
         let current = '';
         let parens = 0;
         let literal = false;
 
         const flush = (lastParen) => {
+
             Assert(!parens, 'Parentheses do not match');
 
             const last = parts[parts.length - 1];
@@ -248,6 +251,7 @@ module.exports = internals.Expression = class {
     }
 
     fn(name, raw) {
+
         const fn = this.settings.functions[name];
 
         Assert(typeof fn === 'function', `${name} must be a function`);
@@ -259,6 +263,7 @@ module.exports = internals.Expression = class {
 
         if (raw) {
             const flush = () => {
+
                 Assert(!parens, 'Parentheses do not match');
 
                 args.push(current);
@@ -307,12 +312,14 @@ module.exports = internals.Expression = class {
         args = args.map((arg) => new internals.Expression(arg, this.settings));
 
         return (context) => {
+
             const resolved = args.map((arg) => arg.resolve(context));
             return fn.call(context, ...resolved);
         };
     }
 
     resolve(context) {
+
         if (!this.parts) {
             return this.resolved;
         }
@@ -364,6 +371,7 @@ module.exports = internals.Expression = class {
 };
 
 internals.resolve = function (part, context) {
+
     if (typeof part === 'function') {
         const resolved = part(context);
         return resolved === undefined ? null : resolved;
@@ -377,6 +385,7 @@ internals.resolve = function (part, context) {
 };
 
 internals.calculate = function (left, right, operator) {
+
     if ((typeof left === 'string' || typeof right === 'string') &&
         operator === '+') {
 

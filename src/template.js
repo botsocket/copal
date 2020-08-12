@@ -14,6 +14,7 @@ internals.constants = {};
 
 internals.functions = {
     if: (condition, then, otherwise) => {
+
         return condition ? then : otherwise;
     },
 };
@@ -21,6 +22,7 @@ internals.functions = {
 // Setup constants and functions
 
 internals.setup = function () {
+
     const keys = Object.getOwnPropertyNames(Math);
     for (const key of keys) {
         const prop = Math[key];
@@ -38,6 +40,7 @@ internals.setup();
 
 module.exports = internals.Template = class {
     constructor(source, options = {}) {
+
         Assert(typeof source === 'string', 'Source must be a string');
         Assert(!source.includes('\u0000') && !source.includes('\u0001') && !source.includes('\u0002'), 'Source cannot contain reserved characters');
         Assert(options.wrap === undefined || (options.wrap && typeof options.wrap === 'string'), 'Option wrap must be a non-empty string');
@@ -59,6 +62,7 @@ module.exports = internals.Template = class {
     }
 
     _parse() {
+
         if (!this.source.includes('{')) {
             return;
         }
@@ -113,6 +117,7 @@ module.exports = internals.Template = class {
     }
 
     resolve(context = {}) {
+
         if (!this._parts) {
             return this._resolved;
         }
@@ -122,6 +127,7 @@ module.exports = internals.Template = class {
         }
 
         const parts = this._parts.map((part) => {
+
             return internals.display(internals.resolve(part, context));
         });
 
@@ -129,11 +135,13 @@ module.exports = internals.Template = class {
     }
 
     toString() {
+
         const wrap = this._settings.wrap;
         return wrap + this.source + wrap;
     }
 
     static isTemplate(value) {
+
         if (!value) {
             return false;
         }
@@ -146,10 +154,12 @@ internals.Template.prototype[internals.template] = true;
 internals.Template.prototype.immutable = true;
 
 internals.ref = function (path) {
+
     return (context) => Get(context, path);
 };
 
 internals.encode = function (source) {
+
     return source
         .replace(/\\\\/g, '\u0000')
         .replace(/\\{/g, '\u0001')
@@ -157,6 +167,7 @@ internals.encode = function (source) {
 };
 
 internals.decode = function (source) {
+
     return source
         .replace(/\u0000/g, '\\')
         .replace(/\u0001/g, '{')
@@ -164,10 +175,12 @@ internals.decode = function (source) {
 };
 
 internals.split = function (source) {
+
     const parts = [];
     let current = '';
 
     const flush = () => {
+
         parts.push(current);
         current = '';
     };
@@ -187,6 +200,7 @@ internals.split = function (source) {
 };
 
 internals.resolve = function (value, context) {
+
     if (typeof value === 'string') {
         return value;
     }
@@ -195,6 +209,7 @@ internals.resolve = function (value, context) {
 };
 
 internals.display = function (value, seen = new WeakSet()) {
+
     if (value === null) {
         return 'null';
     }
@@ -254,6 +269,7 @@ internals.display = function (value, seen = new WeakSet()) {
 };
 
 internals.wrap = function (entries) {
+
     const space = entries.length ? ' ' : '';
     return `{${space}${entries.join(', ')}${space}}`;
 };
