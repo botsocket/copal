@@ -1,6 +1,6 @@
 {
-    "name": "@botbind/template",
-    "version": "5.0.1",
+    "name": "@botsocket/copal",
+    "version": "1.0.0",
     "description": "String format and interpolation",
     "main": "src/index.js",
     "types": "src/index.d.ts",
@@ -9,19 +9,16 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/botbind/template.git"
+        "url": "git+https://github.com/botsocket/copal.git"
     },
-    "author": "Bot Bind's Team",
+    "author": "BotSocket",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/botbind/template/issues"
+        "url": "https://github.com/botsocket/copal/issues"
     },
-    "homepage": "https://github.com/botbind/template#readme",
+    "homepage": "https://github.com/botsocket/copal#readme",
     "scripts": {
-        "lint": "eslint . --report-unused-disable-directives && echo \"No errors found\"",
-        "lint:fix": "eslint . --fix && echo \"No errors found\"",
-        "test": "jest --coverage && tsc && npm run lint && echo \"No errors found\"",
-        "test:watch": "jest --watchAll"
+        "test": "jest --coverage && echo \"All tests passed\" && tsc && echo \"All type tests passed\" && eslint . --report-unused-disable-directives && echo \"No linting errors\""
     },
     "devDependencies": {
         "@hapi/eslint-plugin-hapi": "^4.3.5",
@@ -30,7 +27,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@botbind/dust": "^14.0.0"
+        "@botsocket/bone": "^1.0.0"
     },
     "engines": {
         "node": ">=12.0.0"

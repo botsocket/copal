@@ -1,7 +1,7 @@
 'use strict';
 
-const Assert = require('@botbind/dust/src/assert');
-const Get = require('@botbind/dust/src/get');
+const Assert = require('@botsocket/bone/src/assert');
+const Get = require('@botsocket/bone/src/get');
 
 const Expression = require('./expression');
 

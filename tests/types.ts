@@ -1,10 +1,10 @@
-import Template = require('../src');
+import Copal = require('../src');
 
 let guard: unknown;
 
-Template.parse('');
-Template.parse('', {});
-Template.parse('', {
+Copal.parse('');
+Copal.parse('', {});
+Copal.parse('', {
     wrap: '"',
 
     reference: (path) => {
@@ -26,10 +26,10 @@ Template.parse('', {
 });
 
 guard = 1;
-if (Template.isTemplate(guard)) {
+if (Copal.isTemplate(guard)) {
     guard.resolve({ x: 1 });
     guard.resolve([1, 2, 3]);
     guard.resolve();
 }
 
-Template.parse('').source;
+Copal.parse('').source;
