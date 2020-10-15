@@ -1,4 +1,4 @@
-import Copal = require('../src');
+import * as Copal from '../src';
 
 let guard: unknown;
 

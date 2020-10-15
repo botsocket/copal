@@ -1,3 +1,5 @@
+export { };
+
 /**
  * Parses a source string to a template where:
  *
@@ -21,24 +23,24 @@ export interface Options {
     /**
      * An optional factory function that returns a resolver given the path.
      */
-    reference?: (path: string) => (context: any) => unknown;
+    readonly reference?: (path: string) => (context: any) => unknown;
 
     /**
      * An optional string that is used to wrap the template if it is nested inside another. Defaults to `"`.
      *
      * @default '"'
      */
-    wrap?: string;
+    readonly wrap?: string;
 
     /**
      * An optional hash of constants and their values (can be of type number, boolean, string or `null`).
      */
-    constants?: Record<string, internals.AllowedTypes>;
+    readonly constants?: Record<string, internals.AllowedTypes>;
 
     /**
      * An optional hash of function names and their implementations.
      */
-    functions?: Record<string, (...args: any[]) => internals.AllowedTypes>;
+    readonly functions?: Record<string, (...args: any[]) => internals.AllowedTypes>;
 }
 
 declare namespace internals {
@@ -46,7 +48,7 @@ declare namespace internals {
         /**
          * The source of the template.
          */
-        source: string;
+        readonly source: string;
 
         /**
          * Evaluates expressions and resolves the current template where:
