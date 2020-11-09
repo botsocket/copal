@@ -73,7 +73,7 @@ module.exports = internals.Template = class {
 
         // Split based on "{"s
 
-        const parts = internals.split(encoded);
+        const parts = encoded.split('{');
 
         // Process parts
 
@@ -172,31 +172,6 @@ internals.decode = function (source) {
         .replace(/\u0000/g, '\\')
         .replace(/\u0001/g, '{')
         .replace(/\u0002/g, '}');
-};
-
-internals.split = function (source) {
-
-    const parts = [];
-    let current = '';
-
-    const flush = () => {
-
-        parts.push(current);
-        current = '';
-    };
-
-    for (const char of source) {
-        if (char === '{') {
-            flush();
-            continue;
-        }
-
-        current += char;
-    }
-
-    flush();
-
-    return parts;
 };
 
 internals.resolve = function (value, context) {
